@@ -14,26 +14,93 @@ namespace Moodle.Api.Controllers.Core
 		{
 		}
 
-		public Task<ChecksModel> CheckUpdates(ChecksInputModel checksInputModel)
-		{
-			return Post<ChecksModel,ChecksInputModel>("core_course_check_updates", checksInputModel);
-		}
-
-		public Task<ScaleValuesModel[]> CreateCategories(CategoriesInputModel categoriesInputModel)
-		{
-			return Post<ScaleValuesModel[],CategoriesInputModel>("core_course_create_categories", categoriesInputModel);
-		}
 
 
-		// Fixed - Working
+		#region Fixed - Tested - Working (19.02.2023)
+
+
+
+		#region Create
+
+
+
 		/// <summary>
-		/// Using for create one or more categories.
+		/// Using for create one or more courses.
 		/// </summary>
 		/// <param name="coursesInputModel"></param>
 		/// <returns>Created Categories List</returns>
 		public Task<CoursesModel[]> CreateCourses(CoursesInputModel coursesInputModel)
 		{
-			return Post<CoursesModel[],CoursesInputModel>("core_course_create_courses", coursesInputModel);
+			return Post<CoursesModel[], CoursesInputModel>("core_course_create_courses", coursesInputModel);
+		}
+
+		/// <summary>
+		///  Using for create one or more categories.
+		/// </summary>
+		/// <param name="categoriesInputModel"></param>
+		/// <returns></returns>
+		public Task<ScaleValuesModel[]> CreateCategories(CategoriesInputModel categoriesInputModel)
+		{
+			return Post<ScaleValuesModel[], CategoriesInputModel>("core_course_create_categories", categoriesInputModel);
+		}
+
+
+
+
+
+		#endregion
+
+
+		#region Gets
+
+		 
+		/// <summary>
+		/// This Getting All Course Categories. -No paramater-
+		/// </summary>
+		/// <param name="getCategoriesInputModel"></param>
+		/// <returns>CategoriesModel Series</returns>
+		public Task<CategoriesModel[]> GetCategories(GetCategoriesInputModel getCategoriesInputModel)
+		{
+			return Post<CategoriesModel[], GetCategoriesInputModel>("core_course_get_categories", getCategoriesInputModel);
+		}
+
+		/// <summary>
+		/// Get All Courses
+		/// </summary>
+		/// <param name="getCoursesInputModel"></param>
+		/// <returns></returns>
+		public Task<GetCourses[]> GetCourses(GetCoursesInputModel getCoursesInputModel)
+		{
+			return Post<GetCourses[], GetCoursesInputModel>("core_course_get_courses", getCoursesInputModel);
+		}
+
+
+
+
+		#endregion
+
+
+
+		#region Delete
+
+
+
+
+		#endregion
+
+
+
+
+
+		#endregion
+
+
+
+
+
+		public Task<CohortMembersModel> DeleteCourses(DeleteCoursesInputModel deleteCoursesInputModel)
+		{
+			return Post<CohortMembersModel, DeleteCoursesInputModel>("core_course_delete_courses", deleteCoursesInputModel);
 		}
 
 		public Task DeleteCategories(DeleteCategoriesInputModel deleteCategoriesInputModel)
@@ -41,10 +108,25 @@ namespace Moodle.Api.Controllers.Core
 			return Post<DeleteCategoriesInputModel>("core_course_delete_categories", deleteCategoriesInputModel);
 		}
 
-		public Task<CohortMembersModel> DeleteCourses(DeleteCoursesInputModel deleteCoursesInputModel)
+
+
+
+
+
+
+
+
+
+
+
+
+		public Task<ChecksModel> CheckUpdates(ChecksInputModel checksInputModel)
 		{
-			return Post<CohortMembersModel,DeleteCoursesInputModel>("core_course_delete_courses", deleteCoursesInputModel);
+			return Post<ChecksModel,ChecksInputModel>("core_course_check_updates", checksInputModel);
 		}
+
+		
+
 
 		public Task DeleteModules(DeleteModulesInputModel deleteModulesInputModel)
 		{
@@ -70,19 +152,6 @@ namespace Moodle.Api.Controllers.Core
 		{
 			return Post<ActivitiesOverviewModel,DeleteCoursesInputModel>("core_course_get_activities_overview", deleteCoursesInputModel);
 		}
-
-
-		// Fixed - Working
-		/// <summary>
-		/// This Getting All Course Categories. -No paramater-
-		/// </summary>
-		/// <param name="getCategoriesInputModel"></param>
-		/// <returns>CategoriesModel Series</returns>
-		public Task<CategoriesModel[]> GetCategories(GetCategoriesInputModel getCategoriesInputModel)
-		{
-			return Post<CategoriesModel[],GetCategoriesInputModel>("core_course_get_categories", getCategoriesInputModel);
-		}
-
 		public Task<ContentsModel> GetContents(ContentsInputModel contentsInputModel)
 		{
 			return Post<ContentsModel,ContentsInputModel>("core_course_get_contents", contentsInputModel);
@@ -97,12 +166,7 @@ namespace Moodle.Api.Controllers.Core
 		{
 			return Post<CourseModuleModel,CourseModuleByInstanceInputModel>("core_course_get_course_module_by_instance", courseModuleByInstanceInputModel);
 		}
-
-		public Task<GetCourses> GetCourses(GetCoursesInputModel getCoursesInputModel)
-		{
-			return Post<GetCourses,GetCoursesInputModel>("core_course_get_courses", getCoursesInputModel);
-		}
-
+		 
 		public Task<CoursesByFieldModel> GetCoursesByField(CoursesByFieldInputModel coursesByFieldInputModel)
 		{
 			return Post<CoursesByFieldModel,CoursesByFieldInputModel>("core_course_get_courses_by_field", coursesByFieldInputModel);
@@ -151,9 +215,7 @@ namespace Moodle.Api.Controllers.Core
 		public Task<MarkCourseSelfCompletedModel> ViewCourse(ViewCourseInputModel viewCourseInputModel)
 		{
 			return Post<MarkCourseSelfCompletedModel,ViewCourseInputModel>("core_course_view_course", viewCourseInputModel);
-		}
-
-		//Function Placeholder
+		} 
 
 	}
 }
